@@ -60,7 +60,7 @@ export default class AutoComplete extends Component {
 
     componentDidUpdate() {
 
-        if (this.state.open && this.main) {
+        if (this.state.open && !this.state.closing && this.main) {
 
             this.layerWidth = `${this.main.clientWidth}px`;
 
@@ -72,6 +72,8 @@ export default class AutoComplete extends Component {
                 mainArchor,
                 layerArchor
             } = this.props;
+
+            this.layer.style.width = this.layerWidth;
 
             align(
                 this.layer,
@@ -90,7 +92,9 @@ export default class AutoComplete extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (Array.isArray(nextProps.dataSource)) {
-            this.state.dataSource.cloneWithRows(nextProps.dataSource);
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(nextProps.dataSource)
+            });
         }
     }
 
@@ -218,8 +222,7 @@ export default class AutoComplete extends Component {
                             WebkitTransform: `scale(1, ${scale})`,
                             MozTransform: `scale(1, ${scale})`,
                             msTransform: `scale(1, ${scale})`,
-                            transform: `scale(1, ${scale})`,
-                            width: this.layerWidth
+                            transform: `scale(1, ${scale})`
                         }}
                         ref={layer => {
                             this.layer = layer;
@@ -255,12 +258,13 @@ export default class AutoComplete extends Component {
                 'renderRow', 'layerArchor',
                 'mainArchor', 'getRowKey',
                 'component', 'dataSource',
-                'getRowValue'
+                'getRowValue', 'style'
             ]
         );
 
         return (
             <div
+                style={props.style}
                 className={cx(this.props).build()}
                 ref={main => {
                     this.main = main;
@@ -291,8 +295,8 @@ AutoComplete.displayName = 'AutoComplete';
 AutoComplete.defaultProps = {
     ...TextBox.defaultProps,
     ...ListView.defaultProps,
-    layerArchor: 'bl',
-    mainArchor: 'tl',
+    layerArchor: 'tl',
+    mainArchor: 'bl',
     renderRow(rowData, index, total) {
         return rowData;
     },
