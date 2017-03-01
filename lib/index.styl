@@ -1,0 +1,32 @@
+/**
+ * @file AutoComplete
+ * @author cxtom<cxtom2008@gmail.com>
+ */
+
+@require 'melon/css/base.styl'
+
+.{$-melon-class-prefix}-auto-complete
+
+    display: inline-block
+
+    &-popup
+        transform-origin: left top
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px, rgba(0, 0, 0, 0.3) 0 4px 8px
+        border-radius: 3px
+        background-color: #fff
+        z-index: 200
+        transform-origin: top left
+        max-height: 10em
+        top: 0.4em
+        overflow-y: auto
+
+    &-list
+        line-height: 1.8
+        cursor: pointer
+        padding: 0.5em 0
+
+        &-item
+            padding: 0 0.6em
+
+            &:hover
+                background-color: $-melon-colors.faintBlack

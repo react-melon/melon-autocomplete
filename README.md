@@ -34,7 +34,7 @@ ReactDOM.render(
     ```js
     require.config({
         paths: {
-            'melon-autocomplete': 'bower_components/melon-autocomplete/lib/AutoComplete'
+            'melon-autocomplete': 'bower_components/melon-autocomplete/lib/index'
         }
     });
     ```
@@ -46,7 +46,7 @@ check [this](https://doc.esdoc.org/github.com/react-melon/melon-autocomplete/) o
 ## Run the example
 
 ```sh
-git clone git@github.com:react-melon/melon-autocomplete.git
+git clone https://github.com/react-melon/melon-autocomplete.git
 cd melon-autocomplete
 npm install
 npm start

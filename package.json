@@ -2,7 +2,7 @@
   "name": "melon-autocomplete",
   "version": "1.0.0",
   "description": "melon autocomplete textbox",
-  "main": "lib/AutoComplete.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "NODE_ENV=dev node tools/server.js",
     "build": "NODE_ENV=production gulp build",

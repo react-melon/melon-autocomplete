@@ -3,7 +3,7 @@
  * @author cxtom <cxtom2008@gmail.com>
  */
 
-import AutoComplete from '../../src/AutoComplete.js';
+import AutoComplete from '../../src/index.js';
 
 describe('AutoComplete', function () {
 
