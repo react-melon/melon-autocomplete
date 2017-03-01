@@ -88,6 +88,12 @@ export default class AutoComplete extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (Array.isArray(nextProps.dataSource)) {
+            this.state.dataSource.cloneWithRows(nextProps.dataSource);
+        }
+    }
+
     componentWillUnmount() {
         window.removeEventListener('click', this.onClickAway);
     }
@@ -112,7 +118,6 @@ export default class AutoComplete extends Component {
         this.onUpdate({
             value: e.target.state.value
         });
-
     }
 
     onUpdate(e) {
@@ -149,12 +154,6 @@ export default class AutoComplete extends Component {
 
         if (onChange) {
             onChange(e);
-        }
-
-        const {open, closing} = this.state;
-
-        if (!open || closing) {
-            return;
         }
 
         this.onUpdate({value: e.value});
