@@ -62,8 +62,6 @@ export default class AutoComplete extends Component {
 
         if (this.state.open && !this.state.closing && this.main) {
 
-            this.layerWidth = `${this.main.clientWidth}px`;
-
             if (!this.layer) {
                 return;
             }
@@ -73,7 +71,9 @@ export default class AutoComplete extends Component {
                 layerArchor
             } = this.props;
 
-            this.layer.style.width = this.layerWidth;
+            if (this.layer.offsetWidth < this.main.offsetWidth) {
+                this.layer.style.width = `${this.main.offsetWidth}px`;
+            }
 
             align(
                 this.layer,
